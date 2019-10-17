@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="/plugin/layui/css/layui.css" />
+    <script type="text/javascript" src="/js/jquery-3.4.0.js"></script>
+    <script src="/plugin/layui/layui.js"></script>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo"><span style="font-size: 16px;font-weight: 800; ">医院就诊系统后台管理平台</span></div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:void(0);">
+                    <img src="/images/background.jpg" class="layui-nav-img">
+                    张嘉欣
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:void(0);">个人信息修改</a></dd>
+                    <!--<dd><a href="javascript:void(0);">安全设置</a></dd>-->
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="javascript:exitLogin();">退出登录</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:loadPage('/page/administratorManagement/noticeList.html');">通知公告管理</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:loadPage('/page/administratorManagement/healthInformationList.html');">健康资讯管理</a>
+                </li>
+                <li class="layui-nav-item"><a href="javascript:loadPage('/page/administratorManagement/departmentList.html');">科室管理</a></li>
+                <li class="layui-nav-item"><a href="javascript:void(0);">号源管理</a></li>
+                <li class="layui-nav-item"><a href="javascript:void(0);">挂号管理</a></li>
+                <li class="layui-nav-item"><a href="javascript:loadPage('/page/personManagement/personInfoList.html');">用户管理</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body" align="center">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;height: 95%;">
+            <iframe id="htmlPage" name="htmlPage" height="100%" width="100%" style="margin: 0 auto;"></iframe>
+        </div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © dong.com - 底部固定区域
+    </div>
+</div>
+<script>
+    $(function () {
+        loadPage("/images/background.jpg");
+    });
+
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+
+    //加载页面
+    function loadPage(url){
+        $("#htmlPage").attr("src",url);
+    }
+
+    //退出登录
+    function exitLogin() {
+        window.location.replace("/loginRegister/goLoginView")
+    }
+
+
+</script>
+</body>
+</html>

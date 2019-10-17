@@ -1,0 +1,98 @@
+[
+{
+"UserID": "PI001",
+"Password": "123456",
+"UserType": "患者",
+"Telephone": "18756527652",
+"Email": "473932705@qq.com",
+"IDStatus": "正常"
+},
+{
+"UserID": "PI002",
+"Password": "234567",
+"UserType": "患者",
+"Telephone": "18786527652",
+"Email": "473932705@qq.com",
+"IDStatus": "正常"
+},
+{
+"UserID": "PI003",
+"Password": "345678",
+"UserType": "患者",
+"Telephone": "18756527653",
+"Email": "473932705@qq.com",
+"IDStatus": "正常"
+},
+{
+"UserID": "DT001",
+"Password": "123456",
+"UserType": "医生",
+"Telephone": "18752537652",
+"Email": "473932705@qq.com",
+"IDStatus": "正常"
+},
+{
+"UserID": "DT002",
+"Password": "123457",
+"UserType": "医生",
+"Telephone": "18856527652",
+"Email": "473932705@qq.com",
+"IDStatus": "正常"
+},
+{
+"UserID": "DT003",
+"Password": "223456",
+"UserType": "医生",
+"Telephone": "13756527652",
+"Email": "473932705@qq.com",
+"IDStatus": "正常"
+},
+{
+"UserID": "PI004",
+"Password": "323456",
+"UserType": "患者",
+"Telephone": "13556527652",
+"Email": "473932705@qq.com",
+"IDStatus": "正常"
+},
+{
+"UserID": "PI005",
+"Password": "663456",
+"UserType": "患者",
+"Telephone": "13856527652",
+"Email": "473932705@qq.com",
+"IDStatus": "正常"
+},
+{
+"UserID": "DT004",
+"Password": "224756",
+"UserType": "医生",
+"Telephone": "15156527652",
+"Email": "473932705@qq.com",
+"IDStatus": "正常"
+},
+{
+"UserID": "DT005",
+"Password": "353456",
+"UserType": "医生",
+"Telephone": "18836527652",
+"Email": "473932705@qq.com",
+"IDStatus": "正常"
+},
+{
+"UserID": "DT006",
+"Password": "453456",
+"UserType": "医生",
+"Telephone": "13736527652",
+"Email": "473932705@qq.com",
+"IDStatus": "正常"
+},
+{
+"UserID": "PI006",
+"Password": "363456",
+"UserType": "患者",
+"Telephone": "18256527652",
+"Email": "473932705@qq.com",
+"IDStatus": "正常"
+}
+],

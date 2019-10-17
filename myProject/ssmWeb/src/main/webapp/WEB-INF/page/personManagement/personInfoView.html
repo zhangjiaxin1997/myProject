@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>人员信息页面</title>
+    <link rel="stylesheet" href="/plugin/layui/css/layui.css" />
+    <script type="text/javascript" src="/js/jquery-3.4.0.js"></script>
+    <script type="text/javascript" src="/js/jquery.serializeObject.js"></script>
+    <script src="/plugin/layui/layui.js"></script>
+    <style>
+        /*body{
+            text-align: center;
+        }*/
+    </style>
+</head>
+<body>
+<div style="margin: 20px 15px;">
+    <form id="form_panel" class="layui-form" autocomplete="on"><!--action="/personManagement/savePersonInfo"-->
+        <input type="hidden" id="id" name="id">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">姓名</label>
+                <div class="layui-input-inline">
+                    <span id="name"></span>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">身份证号</label>
+                <div class="layui-input-inline">
+                    <span id="identityCard"></span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-inline">
+                    <span id="sex"></span>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">籍贯</label>
+                <div class="layui-input-inline">
+                    <span id="nativePlace"></span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">出生日期</label>
+                <div class="layui-input-inline">
+                    <span id="birthdate"></span>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">年龄</label>
+                <div class="layui-input-inline">
+                    <span id="age"></span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">手机</label>
+                <div class="layui-input-inline">
+                    <span id="phone"></span>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">邮箱</label>
+                <div class="layui-input-inline">
+                    <span id="email"></span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">现住址</label>
+            <div class="layui-input-block">
+                <span id="presentAddress"></span>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">个人简介</label>
+            <div class="layui-input-block">
+                <span id="individualResume"></span>
+            </div>
+        </div>
+        <div class="layui-form-item" align="center">
+            <button type="button" onclick="javascript:history.go(-1);" class="layui-btn">返回</button>
+        </div>
+    </form>
+</div>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script type="text/javascript">
+    var layer;
+    layui.use(['form', 'laydate'], function(){
+        let form = layui.form,
+            laydate = layui.laydate;
+        layer = layui.layer;
+    });
+
+    $(function () {
+        loadInfo();
+    });
+
+    function loadInfo() {
+        let id = $("#id").val();
+        let url = "/personManagement/getPersonInfo?id="+id;
+        $.ajax({
+            url: url,
+            type: "POST",
+            success:function (data) {
+                alert(data.message);
+                console.log(data);
+            },
+            error:function () {
+                alert(data.message);
+                layer.msg(data.message);
+            }
+        });
+    }
+</script>
+</body>
+</html>

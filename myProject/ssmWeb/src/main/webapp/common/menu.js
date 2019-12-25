@@ -19,7 +19,7 @@ var MENU_CONST = [
         "childMenu": [
             {
                 "menuName": "角色信息列表",
-                "url": "#"
+                "url": "/page/roleManagement/roleInfoList.html"
             }
         ]
     },

@@ -10,6 +10,7 @@ import com.dong.web.domain.Person;
 import com.dong.web.domain.Role;
 import com.dong.web.domain.User;
 import com.dong.web.domain.UserRole;
+import com.dong.web.model.RoleInfoBean;
 import com.dong.web.model.UserInfoBean;
 import com.dong.web.service.LoginRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,14 +91,14 @@ public class LoginRegisterServiceImpl implements LoginRegisterService {
         personMapper.insert(person);
 
         if ("0".equals(bean.getUserType())){
-            Role role = roleMapper.findByRoleName("超级管理员");
+            RoleInfoBean role = roleMapper.findByRoleName("超级管理员");
             if (null == role){
-                role = new Role();
+                role = new RoleInfoBean();
                 role.setId(roleId);
                 role.setRoleName("超级管理员");
                 role.setRemark("注册超级管理员");
                 role.setCreateTime(new Date());
-                roleMapper.insert(role);
+                roleMapper.insertRoleInfo(role);
             }
         }
 

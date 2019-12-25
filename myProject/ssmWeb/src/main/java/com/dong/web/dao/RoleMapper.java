@@ -1,13 +1,15 @@
 package com.dong.web.dao;
 
+import com.dong.common.ReturnResult;
 import com.dong.web.domain.Role;
 
+import com.dong.web.model.RoleInfoBean;
 import java.util.List;
 
 public interface RoleMapper {
     int deleteByPrimaryKey(String id);
 
-    int insert(Role record);
+    ReturnResult<RoleInfoBean> insertRoleInfo(RoleInfoBean param);
 
     Role selectByPrimaryKey(String id);
 
@@ -15,5 +17,5 @@ public interface RoleMapper {
 
     List<Role> findRoleList(String username);
 
-    Role findByRoleName(String roleName);
+    RoleInfoBean findByRoleName(String roleName);
 }

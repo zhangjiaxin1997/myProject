@@ -154,7 +154,7 @@
                 parent.layer.close(index);//关闭当前页
                 console.log(data);
             },
-            error:function () {
+            error:function (data) {
                 alert(data.message);
                 layer.msg(data.message);
             }

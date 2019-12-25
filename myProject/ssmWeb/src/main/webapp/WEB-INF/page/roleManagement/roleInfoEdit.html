@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增角色</title>
+    <link rel="stylesheet" href="/plugin/layui/css/layui.css" />
+    <script type="text/javascript" src="/js/jquery-3.4.0.js"></script>
+    <script type="text/javascript" src="/js/jquery.serializeObject.js"></script>
+    <script src="/plugin/layui/layui.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+<div style="margin: 20px 15px;">
+    <form id="form_panel" class="layui-form" autocomplete="on"><!--action="/personManagement/savePersonInfo"-->
+        <div class="layui-from-item">
+            <label class="layui-form-label">角色名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" required lay-verify="required" placeholder="请输入角色名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-from-item layui-from-text">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-block">
+                <input type="text" name="remark" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" onClick="submitRoleInfo()">提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    var layer;
+    layui.use(['form', 'laydate'], function(){
+        let form = layui.form,
+            laydate = layui.laydate;
+        layer = layui.layer;
+
+        //日期
+        laydate.render({
+            elem: '#birthdate'
+        });
+    });
+
+  function submitRoleInfo() {
+      let url = "../roleManagementController/addRoleInfo";
+      let params = $("#form_panel").serializeObject();//{"name":"11"};//
+      console.log(params);
+      $.ajax({
+          url: url,
+          type: "GET",
+          data: params,
+          success:function (data) {
+              alert(data.message);
+              let index = parent.layer.getFrameIndex(window.name);
+              parent.layer.close(index);//关闭当前页
+              console.log(data);
+          },
+          error:function (data) {
+              alert(data.message);
+              layer.msg(data.message);
+          }
+      });
+  }
+</script>
+</body>
+</html>

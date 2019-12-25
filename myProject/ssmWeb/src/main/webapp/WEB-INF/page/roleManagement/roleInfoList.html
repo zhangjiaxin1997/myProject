@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>角色信息列表</title>
+    <link rel="stylesheet" href="/plugin/layui/css/layui.css" />
+    <script type="text/javascript" src="/js/jquery-3.4.0.js"></script>
+    <script src="/plugin/layui/layui.js"></script>
+    <style>
+
+    </style>
+</head>
+<body class="layui-layout-body">
+<div>
+    <!--页面位置-->
+    <div style="margin: 10px 10px;"><h3>位置：角色管理>>角色信息列表</h3></div>
+    <!--查询条件-->
+    <div>
+        <div id="demoTable" style="padding-left: 10px">
+            <label>角色名称：</label>
+            <div class="layui-inline">
+              <input class="layui-input" name="name" id="name" title="姓名">
+            </div>
+            <button class="layui-btn" id="queryList">查询</button>
+            <button class="layui-btn" id="addRole">新增</button>
+        </div>
+    </div>
+    <!--数据列表-->
+    <div id="roleInfoList" lay-filter="roleInfoList"></div>
+</div>
+<!--操作按钮-->
+<script type="text/html" id="toolBarButton">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+</script>
+<script>
+  //JavaScript代码区域
+    layui.use(['element','table','laypage','layer'], function(){
+        let table = layui.table;
+        let layer = layui.layer;
+        table.render({
+            elem: '#roleInfoList',
+            id: 'roleInfoList',
+            height: 500,
+            url: '//', //数据接口,
+            method: 'POST',
+            defaultToolbar: false,
+            page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+              layout: ['first', 'prev', 'page', 'next','last','limit', 'count', 'skip'], //自定义分页布局
+              limit: 10,
+              limits: [10, 20, 30, 40, 50],
+              prev: '上一页',
+              next: '下一页',
+              groups: 5, //只显示 5 个连续页码
+              skip: true,
+              first: '首页', //不显示首页
+              last: '尾页'//不显示尾页
+            },
+            even: true,
+            skin: 'row',
+            cols: [[ //表头
+              {type: 'numbers', title: '序号', width:'5%' },
+              {field: 'roleName', title: '角色名称', width:'20%',align: 'center'},
+              {field: 'remark', title: '备注', width:'30%',align: 'center'},
+              {field: 'creatTime', title: '创建时间', width:'15%',align: 'center'},
+              {field: 'updateTime', title: '修改时间', width:'15%',align: 'center'},
+              {fixed: 'right',title: '操作', width: '15%',align: 'center',toolbar: '#toolBarButton'}
+            ]],
+            done: function(res, curr, count){
+              //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+              // var html = "<div>查看</div>";
+              console.log(res);
+              //得到当前页码
+              console.log(curr);
+              //得到数据总量
+              console.log(count);
+            }
+        });
+
+        $("#addRole").click(function(){
+            layer.open({
+                type:2,
+                title:"新增角色",
+                area:['60%','95%'],
+                content:'/page/roleManagement/roleInfoEdit.html'
+            });
+        });
+
+
+
+        // //监听行工具事件
+        // //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+        // table.on('tool(personInfoList)', function(obj){
+        //   let data = obj.data, //获得当前行数据
+        //       layEvent = obj.event; //获得 lay-event 对应的值
+        //   if(layEvent === 'detail'){
+        //     layer.open({
+        //       type: 2,
+        //       title: '详细信息',
+        //       area:['60%','95%'],
+        //       content: ['/page/roleManagement/roleInfoView.html','no'],
+        //       success: function(layero, index) {
+        //         let body = layer.getChildFrame('body', index);//建立父子联系
+        //         let iframeWin = window[layero.find('iframe')[0]['name']];
+        //         let id = body.find('#id');
+        //         $(id).val(data.id);
+        //       }
+        //     });
+        //   } else if(layEvent === 'delete'){
+        //     layer.confirm('确认删除吗？', function(index){
+        //       obj.del(); //删除对应行（tr）的DOM结构
+        //       layer.close(index);
+        //       //向服务端发送删除指令
+        //     });
+        //   } else if(layEvent === 'edit'){
+        //     layer.open({
+        //       type: 2,
+        //       title: '查看信息',
+        //       area:['60%','95%'],
+        //       content: ['/page/roleManagement/roleInfoEdit.html','no'] //?id='+data.id这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+        //     });
+        //   }
+        // });
+    });
+</script>
+</body>
+</html>
